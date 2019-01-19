@@ -1,18 +1,17 @@
 package org.usfirst.frc.team708.robot.subsystems;
 
 import org.usfirst.frc.team708.robot.Constants;
-import org.usfirst.frc.team708.robot.OI;
+// import org.usfirst.frc.team708.robot.OI;
 import org.usfirst.frc.team708.robot.RobotMap;
 import org.usfirst.frc.team708.robot.commands.drivetrain.JoystickDrive;
-import org.usfirst.frc.team708.robot.util.HatterDrive;
 import org.usfirst.frc.team708.robot.util.IRSensor;
 import org.usfirst.frc.team708.robot.util.UltrasonicSensor;
 import org.usfirst.frc.team708.robot.util.Math708;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
-import com.ctre.phoenix.motorcontrol.can.*;
-import com.ctre.phoenix.motorcontrol.NeutralMode;
+// import com.ctre.phoenix.motorcontrol.can.*;
+// import com.ctre.phoenix.motorcontrol.NeutralMode;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Encoder;
@@ -24,6 +23,9 @@ import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import com.revrobotics.*;
+import com.revrobotics.CANSparkMax.IdleMode;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 /**
  * This class is a drivetrain subsystem that uses PID to drive straight.
@@ -32,10 +34,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Drivetrain extends PIDSubsystem {
 
-	private WPI_TalonSRX leftMaster, rightMaster;	// Motor Controllers
-	private WPI_VictorSPX	leftSlave1, leftSlave2, rightSlave2, rightSlave1;
-
-	
+	// private WPI_TalonSRX leftMaster, rightMaster;	// Motor Controllers
+	// private WPI_VictorSPX	leftSlave1, leftSlave2, rightSlave2, rightSlave1;
+	private CANSparkMax leftMaster, rightMaster, leftSlave1, rightSlave1;
+		
 	// Variables specific for drivetrain PID loop
 	private double moveSpeed = 0.0;
 	private double pidOutput = 0.0;
@@ -72,33 +74,40 @@ public class Drivetrain extends PIDSubsystem {
     	super("Drivetrain", Constants.Kp, Constants.Ki, Constants.Kd);
     	
     	// Initializes motor controllers with device IDs from RobotMap
-		leftMaster  = new WPI_TalonSRX(RobotMap.drivetrainLeftMotorMaster);
-		leftSlave1   = new WPI_VictorSPX(RobotMap.drivetrainLeftMotorSlave1);
-		leftSlave2   = new WPI_VictorSPX(RobotMap.drivetrainLeftMotorSlave2);
-		rightMaster = new WPI_TalonSRX(RobotMap.drivetrainRightMotorMaster);
-		rightSlave1  = new WPI_VictorSPX(RobotMap.drivetrainRightMotorSlave1);
-		rightSlave2  = new WPI_VictorSPX(RobotMap.drivetrainRightMotorSlave2);
+		// leftMaster  = new WPI_TalonSRX(RobotMap.drivetrainLeftMotorMaster);
+		// leftSlave1   = new WPI_VictorSPX(RobotMap.drivetrainLeftMotorSlave1);
+		// leftSlave2   = new WPI_VictorSPX(RobotMap.drivetrainLeftMotorSlave2);
+		// rightMaster = new WPI_TalonSRX(RobotMap.drivetrainRightMotorMaster);
+		// rightSlave1  = new WPI_VictorSPX(RobotMap.drivetrainRightMotorSlave1);
+		// rightSlave2  = new WPI_VictorSPX(RobotMap.drivetrainRightMotorSlave2);
+		leftMaster = new CANSparkMax(1, MotorType.kBrushless);
+		leftSlave1 = new CANSparkMax(2, MotorType.kBrushless);
+		//leftSlave2 = new CANSparkMax(3, MotorType.kBrushless);
+		rightMaster = new CANSparkMax(3, MotorType.kBrushless);
+		rightSlave1 = new CANSparkMax(4, MotorType.kBrushless);
+		//rightSlave2 = new CANSparkMax(6, MotorType.kBrushless);
+
 		
 		/* Peak Current and Duration must be exceeded before current limit is activated.
 		 * When activated, current will be limited to Continuous Current.
 		 * Set Peak Current params to 0 if desired behavior is to immediately current-limit. 
 		 * (10 ms timeout)*/
-		leftMaster.configPeakCurrentLimit(45, 10); /* 45 A */
-		leftMaster.configPeakCurrentDuration(200, 10); /* 200ms */
-		leftMaster.configContinuousCurrentLimit(40, 10); /* 40A */
-		leftMaster.enableCurrentLimit(true); /* turn it on */
+		// leftMaster.configPeakCurrentLimit(45, 10); /* 45 A */
+		// leftMaster.configPeakCurrentDuration(200, 10); /* 200ms */
+		// leftMaster.configContinuousCurrentLimit(40, 10); /* 40A */
+		// leftMaster.enableCurrentLimit(true); /* turn it on */
 		
 		/* Peak Current and Duration must be exceeded before current limit is activated.
 		 * When activated, current will be limited to Continuous Current.
 		 * Set Peak Current params to 0 if desired behavior is to immediately current-limit. 
 		 * (10 ms timeout)*/
-		rightMaster.configPeakCurrentLimit(45, 10); /* 45 A */
-		rightMaster.configPeakCurrentDuration(200, 10); /* 200ms */
-		rightMaster.configContinuousCurrentLimit(40, 10); /* 40A */
-		rightMaster.enableCurrentLimit(true); /* turn it on */
+		// rightMaster.configPeakCurrentLimit(45, 10); /* 45 A */
+		// rightMaster.configPeakCurrentDuration(200, 10); /* 200ms */
+		// rightMaster.configContinuousCurrentLimit(40, 10); /* 40A */
+		// rightMaster.enableCurrentLimit(true); /* turn it on */
 		
-		SpeedControllerGroup leftMotors = new SpeedControllerGroup(leftMaster, leftSlave1, leftSlave2);
-		SpeedControllerGroup rightMotors = new SpeedControllerGroup(rightMaster, rightSlave1, rightSlave2);
+		SpeedControllerGroup leftMotors = new SpeedControllerGroup(leftMaster, leftSlave1);
+		SpeedControllerGroup rightMotors = new SpeedControllerGroup(rightMaster, rightSlave1);
 		
 		drivetrain = new DifferentialDrive(leftMotors, rightMotors);	// Initializes drivetrain class
 		
@@ -313,38 +322,46 @@ public class Drivetrain extends PIDSubsystem {
     public void toggleBrakeMode() {
     	brake = !brake;
     	if (brake) {
-    		leftMaster.setNeutralMode(NeutralMode.Brake);
-    		leftSlave1.setNeutralMode(NeutralMode.Brake);
-    		leftSlave2.setNeutralMode(NeutralMode.Brake);
-    		rightMaster.setNeutralMode(NeutralMode.Brake);
-    		rightSlave1.setNeutralMode(NeutralMode.Brake);
-    		rightSlave2.setNeutralMode(NeutralMode.Brake);
+			// leftMaster.setNeutralMode(NeutralMode.Brake);
+    		// leftSlave1.setNeutralMode(NeutralMode.Brake);
+    		// leftSlave2.setNeutralMode(NeutralMode.Brake);
+    		// rightMaster.setNeutralMode(NeutralMode.Brake);
+    		// rightSlave1.setNeutralMode(NeutralMode.Brake);
+			// rightSlave2.setNeutralMode(NeutralMode.Brake);
+			leftMaster.setIdleMode(IdleMode.kBrake);
+			rightMaster.setIdleMode(IdleMode.kBrake);
     	} else {
-    		leftMaster.setNeutralMode(NeutralMode.Coast);
-    		leftSlave1.setNeutralMode(NeutralMode.Coast);
-    		leftSlave2.setNeutralMode(NeutralMode.Coast);
-    		rightMaster.setNeutralMode(NeutralMode.Coast);
-    		rightSlave1.setNeutralMode(NeutralMode.Coast);
-    		rightSlave2.setNeutralMode(NeutralMode.Coast);
+    		// leftMaster.setNeutralMode(NeutralMode.Coast);
+    		// leftSlave1.setNeutralMode(NeutralMode.Coast);
+    		// leftSlave2.setNeutralMode(NeutralMode.Coast);
+    		// rightMaster.setNeutralMode(NeutralMode.Coast);
+    		// rightSlave1.setNeutralMode(NeutralMode.Coast);
+			// rightSlave2.setNeutralMode(NeutralMode.Coast);
+			leftMaster.setIdleMode(IdleMode.kCoast);
+			rightMaster.setIdleMode(IdleMode.kCoast);
     	}
     }
     
     public void setBrakeMode(boolean setBrake) {
     	brake = setBrake;
     	if (brake) {
-    		leftMaster.setNeutralMode(NeutralMode.Brake);
-    		leftSlave1.setNeutralMode(NeutralMode.Brake);
-    		leftSlave2.setNeutralMode(NeutralMode.Brake);
-    		rightMaster.setNeutralMode(NeutralMode.Brake);
-    		rightSlave1.setNeutralMode(NeutralMode.Brake);
-    		rightSlave2.setNeutralMode(NeutralMode.Brake);
+    		// leftMaster.setNeutralMode(NeutralMode.Brake);
+    		// leftSlave1.setNeutralMode(NeutralMode.Brake);
+    		// leftSlave2.setNeutralMode(NeutralMode.Brake);
+    		// rightMaster.setNeutralMode(NeutralMode.Brake);
+    		// rightSlave1.setNeutralMode(NeutralMode.Brake);
+			// rightSlave2.setNeutralMode(NeutralMode.Brake);
+			leftMaster.setIdleMode(IdleMode.kBrake);
+			rightMaster.setIdleMode(IdleMode.kBrake);
     	} else {
-    		leftMaster.setNeutralMode(NeutralMode.Coast);
-    		leftSlave1.setNeutralMode(NeutralMode.Coast);
-    		leftSlave2.setNeutralMode(NeutralMode.Coast);
-    		rightMaster.setNeutralMode(NeutralMode.Coast);
-    		rightSlave1.setNeutralMode(NeutralMode.Coast);
-    		rightSlave2.setNeutralMode(NeutralMode.Coast);
+    		// leftMaster.setNeutralMode(NeutralMode.Coast);
+    		// leftSlave1.setNeutralMode(NeutralMode.Coast);
+    		// leftSlave2.setNeutralMode(NeutralMode.Coast);
+    		// rightMaster.setNeutralMode(NeutralMode.Coast);
+    		// rightSlave1.setNeutralMode(NeutralMode.Coast);
+			// rightSlave2.setNeutralMode(NeutralMode.Coast);
+			leftMaster.setIdleMode(IdleMode.kCoast);
+			rightMaster.setIdleMode(IdleMode.kCoast);
     	}
     }
     
