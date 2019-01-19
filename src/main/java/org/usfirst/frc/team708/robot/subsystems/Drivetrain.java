@@ -80,31 +80,10 @@ public class Drivetrain extends PIDSubsystem {
 		// rightMaster = new WPI_TalonSRX(RobotMap.drivetrainRightMotorMaster);
 		// rightSlave1  = new WPI_VictorSPX(RobotMap.drivetrainRightMotorSlave1);
 		// rightSlave2  = new WPI_VictorSPX(RobotMap.drivetrainRightMotorSlave2);
-		leftMaster = new CANSparkMax(1, MotorType.kBrushless);
-		leftSlave1 = new CANSparkMax(2, MotorType.kBrushless);
-		//leftSlave2 = new CANSparkMax(3, MotorType.kBrushless);
-		rightMaster = new CANSparkMax(3, MotorType.kBrushless);
-		rightSlave1 = new CANSparkMax(4, MotorType.kBrushless);
-		//rightSlave2 = new CANSparkMax(6, MotorType.kBrushless);
-
-		
-		/* Peak Current and Duration must be exceeded before current limit is activated.
-		 * When activated, current will be limited to Continuous Current.
-		 * Set Peak Current params to 0 if desired behavior is to immediately current-limit. 
-		 * (10 ms timeout)*/
-		// leftMaster.configPeakCurrentLimit(45, 10); /* 45 A */
-		// leftMaster.configPeakCurrentDuration(200, 10); /* 200ms */
-		// leftMaster.configContinuousCurrentLimit(40, 10); /* 40A */
-		// leftMaster.enableCurrentLimit(true); /* turn it on */
-		
-		/* Peak Current and Duration must be exceeded before current limit is activated.
-		 * When activated, current will be limited to Continuous Current.
-		 * Set Peak Current params to 0 if desired behavior is to immediately current-limit. 
-		 * (10 ms timeout)*/
-		// rightMaster.configPeakCurrentLimit(45, 10); /* 45 A */
-		// rightMaster.configPeakCurrentDuration(200, 10); /* 200ms */
-		// rightMaster.configContinuousCurrentLimit(40, 10); /* 40A */
-		// rightMaster.enableCurrentLimit(true); /* turn it on */
+		leftMaster = new CANSparkMax(RobotMap.drivetrainLeftMotorMaster, MotorType.kBrushless);
+		leftSlave1 = new CANSparkMax(RobotMap.drivetrainLeftMotorSlave1, MotorType.kBrushless);
+		rightMaster = new CANSparkMax(RobotMap.drivetrainRightMotorMaster, MotorType.kBrushless);
+		rightSlave1 = new CANSparkMax(RobotMap.drivetrainRightMotorSlave1, MotorType.kBrushless);
 		
 		SpeedControllerGroup leftMotors = new SpeedControllerGroup(leftMaster, leftSlave1);
 		SpeedControllerGroup rightMotors = new SpeedControllerGroup(rightMaster, rightSlave1);
