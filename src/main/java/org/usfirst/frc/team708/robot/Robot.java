@@ -6,7 +6,7 @@ package org.usfirst.frc.team708.robot;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 // import edu.wpi.first.wpilibj.Joystick;
-//import edu.wpi.first.wpilibj.CameraServer;
+// import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.Preferences;
 // import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.Timer;
@@ -30,6 +30,7 @@ import org.usfirst.frc.team708.robot.subsystems.PneumaticsCube;
 import org.usfirst.frc.team708.robot.subsystems.PneumaticsClimber;
 // import org.usfirst.frc.team708.robot.commands.pneumatics.*;
 import org.usfirst.frc.team708.robot.Constants;
+import edu.wpi.cscore.UsbCamera;
 
 // import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
@@ -59,7 +60,9 @@ public class Robot extends TimedRobot {
 
    	public String 	gameData;
    	public String 	robotLocation;
-   	public String 	autoMode;
+    public String 	autoMode;  
+
+
 
 	public boolean climber=true;
 	SendableChooser<Command> autonomousMode = new SendableChooser<>();
@@ -159,7 +162,7 @@ public class Robot extends TimedRobot {
         if (autonomousCommand != null) autonomousCommand.cancel();
         visionProcessor.setNTInfo("ledMode", Constants.VISION_LED_OFF);
         visionProcessor.setNTInfo("camMode", Constants.VISION_PROCESSING_OFF);
-        drivetrain.setBrakeMode(false);
+        drivetrain.setBrakeMode(true);
         // drivetrain.shiftGearReverse();
     	// drivetrain.setgear(false);
         

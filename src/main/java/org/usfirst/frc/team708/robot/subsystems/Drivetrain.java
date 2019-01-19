@@ -29,7 +29,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 /**
  * This class is a drivetrain subsystem that uses PID to drive straight.
- * @author Nam Tran & Thomas Zhao & Viet Tran
+ * @author Nam Tran & Viet Tran
  */
 
 public class Drivetrain extends PIDSubsystem {
@@ -308,7 +308,9 @@ public class Drivetrain extends PIDSubsystem {
     		// rightSlave1.setNeutralMode(NeutralMode.Brake);
 			// rightSlave2.setNeutralMode(NeutralMode.Brake);
 			leftMaster.setIdleMode(IdleMode.kBrake);
+			leftSlave1.setIdleMode(IdleMode.kBrake);
 			rightMaster.setIdleMode(IdleMode.kBrake);
+			rightSlave1.setIdleMode(IdleMode.kBrake);
     	} else {
     		// leftMaster.setNeutralMode(NeutralMode.Coast);
     		// leftSlave1.setNeutralMode(NeutralMode.Coast);
@@ -317,7 +319,9 @@ public class Drivetrain extends PIDSubsystem {
     		// rightSlave1.setNeutralMode(NeutralMode.Coast);
 			// rightSlave2.setNeutralMode(NeutralMode.Coast);
 			leftMaster.setIdleMode(IdleMode.kCoast);
+			leftSlave1.setIdleMode(IdleMode.kCoast);
 			rightMaster.setIdleMode(IdleMode.kCoast);
+			rightSlave1.setIdleMode(IdleMode.kCoast);
     	}
     }
     
@@ -331,7 +335,9 @@ public class Drivetrain extends PIDSubsystem {
     		// rightSlave1.setNeutralMode(NeutralMode.Brake);
 			// rightSlave2.setNeutralMode(NeutralMode.Brake);
 			leftMaster.setIdleMode(IdleMode.kBrake);
+			leftSlave1.setIdleMode(IdleMode.kBrake);
 			rightMaster.setIdleMode(IdleMode.kBrake);
+			rightSlave1.setIdleMode(IdleMode.kBrake);
     	} else {
     		// leftMaster.setNeutralMode(NeutralMode.Coast);
     		// leftSlave1.setNeutralMode(NeutralMode.Coast);
@@ -340,7 +346,9 @@ public class Drivetrain extends PIDSubsystem {
     		// rightSlave1.setNeutralMode(NeutralMode.Coast);
 			// rightSlave2.setNeutralMode(NeutralMode.Coast);
 			leftMaster.setIdleMode(IdleMode.kCoast);
+			leftSlave1.setIdleMode(IdleMode.kCoast);
 			rightMaster.setIdleMode(IdleMode.kCoast);
+			rightSlave1.setIdleMode(IdleMode.kCoast);
     	}
     }
     
