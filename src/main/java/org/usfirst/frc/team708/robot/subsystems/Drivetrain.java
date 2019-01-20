@@ -29,13 +29,11 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 /**
  * This class is a drivetrain subsystem that uses PID to drive straight.
- * @author Nam Tran & Viet Tran
+ * @author Gucci-Minh, Short-Round, Aladdin's Acid
  */
 
 public class Drivetrain extends PIDSubsystem {
 
-	// private WPI_TalonSRX leftMaster, rightMaster;	// Motor Controllers
-	// private WPI_VictorSPX	leftSlave1, leftSlave2, rightSlave2, rightSlave1;
 	private CANSparkMax leftMaster, rightMaster, leftSlave1, rightSlave1;
 		
 	// Variables specific for drivetrain PID loop
@@ -49,15 +47,15 @@ public class Drivetrain extends PIDSubsystem {
 	private Encoder encoder2;						// Encoder for the drivetrain
 
 	private double distancePerPulse;
-	private BuiltInAccelerometer accelerometer;				// Accelerometer that is built into the roboRIO
+	private BuiltInAccelerometer accelerometer;			// Accelerometer that is built into the roboRIO
 	private ADXRS450_Gyro gyro;							// Gyro that is used for drift correction
 	private Solenoid butterflySolenoid;
 	private DoubleSolenoid gearShiftSolenoid;
 	
 	private IRSensor drivetrainIRSensor;					// IR Sensor for <=25inches
 	private UltrasonicSensor drivetrainUltrasonicSensor;	// Sonar used for <=21feet
-	private DigitalInput opticalSensor;
-	private DigitalInput opticalSensor1;
+	// private DigitalInput opticalSensor;
+	// private DigitalInput opticalSensor1;
 	
 	private boolean brake = true;		// Whether the talons should be in coast or brake mode
 						// (this could be important if a jerky robot causes things to topple
@@ -74,12 +72,6 @@ public class Drivetrain extends PIDSubsystem {
     	super("Drivetrain", Constants.Kp, Constants.Ki, Constants.Kd);
     	
     	// Initializes motor controllers with device IDs from RobotMap
-		// leftMaster  = new WPI_TalonSRX(RobotMap.drivetrainLeftMotorMaster);
-		// leftSlave1   = new WPI_VictorSPX(RobotMap.drivetrainLeftMotorSlave1);
-		// leftSlave2   = new WPI_VictorSPX(RobotMap.drivetrainLeftMotorSlave2);
-		// rightMaster = new WPI_TalonSRX(RobotMap.drivetrainRightMotorMaster);
-		// rightSlave1  = new WPI_VictorSPX(RobotMap.drivetrainRightMotorSlave1);
-		// rightSlave2  = new WPI_VictorSPX(RobotMap.drivetrainRightMotorSlave2);
 		leftMaster = new CANSparkMax(RobotMap.drivetrainLeftMotorMaster, MotorType.kBrushless);
 		leftSlave1 = new CANSparkMax(RobotMap.drivetrainLeftMotorSlave1, MotorType.kBrushless);
 		rightMaster = new CANSparkMax(RobotMap.drivetrainRightMotorMaster, MotorType.kBrushless);
@@ -104,8 +96,8 @@ public class Drivetrain extends PIDSubsystem {
 		encoder2.setDistancePerPulse(distancePerPulse);
 		encoder2.reset();								// Resets the encoder so that it starts with a 0.0 value
 		
-//		opticalSensor  = new DigitalInput(7);
-		opticalSensor1 = new DigitalInput(RobotMap.colorSensor);
+		// opticalSensor  = new DigitalInput(7);
+		// opticalSensor1 = new DigitalInput(RobotMap.colorSensor);
 
 		butterflySolenoid = new Solenoid(RobotMap.butterflyShift);
 		gearShiftSolenoid = new DoubleSolenoid(RobotMap.shifterLow, RobotMap.shifterHigh);
@@ -421,9 +413,9 @@ public class Drivetrain extends PIDSubsystem {
     {
     	butterfly_on = !butterfly_on;
     }
-    public boolean isOpticalSensor1White() {
-    	return !opticalSensor1.get();
-    }
+    // public boolean isOpticalSensor1White() {
+    // 	return !opticalSensor1.get();
+    // }
     /**
      * Returns a process variable to the PIDSubsystem for correction
      */
@@ -475,7 +467,7 @@ public class Drivetrain extends PIDSubsystem {
     	SmartDashboard.putBoolean("Brake", brake);					// Brake or Coast
     	SmartDashboard.putBoolean("gear high", gear_high);					// Brake or Coast
     	SmartDashboard.putBoolean("butterfly", butterfly_on);
-    	SmartDashboard.putBoolean("Optical1", isOpticalSensor1White());
+		// SmartDashboard.putBoolean("Optical1", isOpticalSensor1White());
 //    	SmartDashboard.putNumber("DT Rt Master", rightMaster.getOutputCurrent());
 //    	SmartDashboard.putNumber("DT Lt Master", leftMaster.getOutputCurrent());
     }

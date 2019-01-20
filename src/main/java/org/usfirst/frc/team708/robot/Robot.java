@@ -221,11 +221,8 @@ public class Robot extends TimedRobot {
 //    	autonomousMode.addOption("Drive in Square", 					new DriveInSquare());
     	autonomousMode.addOption("Drive encoder distance", 				new driveDistanceEncoder());
 //    	autonomousMode.addOption("Curvature Drive", 					new driveCurvatureForTime());
-    	autonomousMode.addOption("Left Robot Location", 				new Left_RobotLocation());
 //    	autonomousMode.addOption("Right Robot Location", 				new Right_RobotLocation());
-    	autonomousMode.addOption("Left Switch Only RobotLocation", 		new Left_SwitchOnly_RobotLocation());
 //    	autonomousMode.addOption("Right Switch Only RobotLocation", 	new Left_SwitchOnly_RobotLocation());
-    	autonomousMode.addOption("Center Switch Only RobotLocation", 	new Center_SwitchOnly_RobotLocation());
 
 
     	SmartDashboard.putData("Autonomous Selection", autonomousMode);    	   	
