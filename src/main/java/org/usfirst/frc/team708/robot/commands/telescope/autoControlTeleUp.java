@@ -25,7 +25,7 @@ public class autoControlTeleUp extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.tele.moveMotor(Constants.TELE_FORWARD);
+    	Robot.tele.moveMotor(Constants.ELE_FORWARD);
     }
 
     // Called repeatedly when this Command is scheduled to run

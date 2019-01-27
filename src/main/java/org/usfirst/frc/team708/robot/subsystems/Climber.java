@@ -12,14 +12,14 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  * 
  */
-public class Hanger extends Subsystem {
+public class Climber extends Subsystem {
 	
 	
 	
 	/**
 	 * Constructor
 	 */
-	public Hanger() {
+	public Climber() {
 		
 		
 		

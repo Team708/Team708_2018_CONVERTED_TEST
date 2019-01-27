@@ -44,7 +44,7 @@ public class JoystickMoveTele extends Command {
 //    	}
 //    	else {
     		// check if the telescope arm is fully extended
-    		if ((Robot.tele.getAngle() >= Constants.TELE_MAX) && (moveSpeed > 0)) {
+    		if ((Robot.tele.getAngle() >= Constants.ELE_MAX) && (moveSpeed > 0)) {
             	Robot.tele.manualMove(0.0);
             	return true;
     		}

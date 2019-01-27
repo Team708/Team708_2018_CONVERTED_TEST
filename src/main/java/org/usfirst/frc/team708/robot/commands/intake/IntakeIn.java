@@ -1,4 +1,4 @@
-package org.usfirst.frc.team708.robot.commands.intakeCube;
+package org.usfirst.frc.team708.robot.commands.intake;
 
 import org.usfirst.frc.team708.robot.Constants;
 import org.usfirst.frc.team708.robot.OI;
@@ -14,15 +14,12 @@ import edu.wpi.first.wpilibj.command.Command;
 
 
 /**
- *@author
+ *@author James Alex Thomas Mikhael
  */
-public class AutoIntakeInForTime extends Command {
+public class IntakeIn extends Command {
 
-    public AutoIntakeInForTime(double maxTime) {
+    public IntakeIn() {
 //    	requires(Robot.intakeCube);
-//    	requires(Robot.loader);
-    	
-    	this.setTimeout(maxTime);
     }
     
 
@@ -32,20 +29,21 @@ public class AutoIntakeInForTime extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-//    	if(Robot.intakeCube.hasCube())
-//    		Robot.intakeCube.stop();
-//    	else
-//         	Robot.intakeCube.moveMotor(Constants.INTAKE_FORWARD);    }
-    	Robot.intakeCube.moveMotor(Constants.INTAKE_FORWARD);
+    	if(Robot.intakeCube.hasCube())
+    		Robot.intakeCube.stop();
+    	else
+         	Robot.intakeCube.moveMotor(Constants.BALL_FORWARD);
     }
+
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return (isTimedOut());
+    	return false;		//Replace with intake "has" boolean later	-Viet
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.intakeCube.stop();
+     Robot.intakeCube.stop();
+
     }
 
     // Called when another command which requires one or more of the same

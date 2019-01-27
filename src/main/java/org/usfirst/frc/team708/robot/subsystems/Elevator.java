@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class Telescope extends Subsystem {
+public class Elevator extends Subsystem {
 	
 	private WPI_TalonSRX 	teleMotorMaster;
 	private WPI_VictorSPX	teleMotorSlave1, teleMotorSlave2;
@@ -21,7 +21,7 @@ public class Telescope extends Subsystem {
 
 	public double teleDistancePerPulse;
     
-	public Telescope() {
+	public Elevator() {
 		teleMotorMaster  = new WPI_TalonSRX(RobotMap.telescopingMotorMaster);
 		teleMotorSlave1  = new WPI_VictorSPX(RobotMap.telescopingMotorSlave1);
 		teleMotorSlave2  = new WPI_VictorSPX(RobotMap.telescopingMotorSlave2);
@@ -41,7 +41,7 @@ public class Telescope extends Subsystem {
 		teleMotorSlave2.follow(teleMotorMaster);
 
 		teleMotorMaster.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
-		teleMotorMaster.setSelectedSensorPosition(Constants.TELE_ENC_STARTING_POSITION, 0, 0);
+		teleMotorMaster.setSelectedSensorPosition(Constants.ELE_ENC_STARTING_POSITION, 0, 0);
 	}
 	
 	public void initDefaultCommand() {

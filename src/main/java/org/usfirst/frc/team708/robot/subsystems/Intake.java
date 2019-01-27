@@ -19,19 +19,18 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  * Subsystem that intakes balls
  * @author James_Makovics
- * @author Michael_Steinberg
  * @author Thomas Zhao
- * @author Alex Tysak
+ * 
  */
 
-public class IntakeCube extends Subsystem {
+public class Intake extends Subsystem {
 	
 	private WPI_TalonSRX 	intakeMaster;
 	private WPI_VictorSPX   intakeSlave;
 	
 	public DigitalInput 	cubeSensor;
 
-	public IntakeCube() {
+	public Intake() {
 		intakeMaster = new WPI_TalonSRX(RobotMap.intakeMotorMaster);
 		intakeSlave  = new WPI_VictorSPX(RobotMap.intakeMotorSlave);
 		
@@ -75,7 +74,7 @@ public class IntakeCube extends Subsystem {
 	}
 	
 	public void stop(){
-		intakeMaster.set(Constants.INTAKE_OFF);
+		intakeMaster.set(Constants.BALL_OFF);
     	SmartDashboard.putNumber("In Stop Motor speed=", 0.0);
 	}
     

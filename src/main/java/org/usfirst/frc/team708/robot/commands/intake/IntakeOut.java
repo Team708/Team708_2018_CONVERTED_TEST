@@ -1,4 +1,4 @@
-package org.usfirst.frc.team708.robot.commands.intakeCube;
+package org.usfirst.frc.team708.robot.commands.intake;
 
 import org.usfirst.frc.team708.robot.Constants;
 import org.usfirst.frc.team708.robot.OI;
@@ -10,31 +10,32 @@ import org.usfirst.frc.team708.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.command.Command;
+
 /**
  *@author James_Makovics
  *@author Alex Tysak
  *@author Thomas Zhao
  */
-public class IntakeStop extends Command {
+public class IntakeOut extends Command {
 
 	
-    public IntakeStop() {
-//    	requires(Robot.intakeCube);
+    public IntakeOut() {
+    	requires(Robot.intakeCube);
     }
     
 
     // Called just before this Command runs the first time
     protected void initialize() {
-   }
+    	Robot.intakeCube.moveMotor(Constants.BALL_REVERSE);
+    }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.intakeCube.moveMotor(Constants.INTAKE_OFF);
-  }
+    }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return(true);
+    	return(false);
     }
 
     // Called once after isFinished returns true

@@ -38,7 +38,7 @@ public class ControlTeleToGround extends Command {
     	}	
     	else
     	{
-        	Robot.tele.moveMotor(Constants.TELE_REVERSE); 
+        	Robot.tele.moveMotor(Constants.ELE_REVERSE); 
     	    return false;
     	}
     }

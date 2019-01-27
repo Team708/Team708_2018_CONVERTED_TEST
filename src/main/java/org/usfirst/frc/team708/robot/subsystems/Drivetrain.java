@@ -101,9 +101,7 @@ public class Drivetrain extends PIDSubsystem {
 
 		butterflySolenoid = new Solenoid(RobotMap.butterflyShift);
 		gearShiftSolenoid = new DoubleSolenoid(RobotMap.shifterLow, RobotMap.shifterHigh);
-		
-		butterflySolenoid.set(false);
-		butterflySolenoid.setPulseDuration(Constants.BUTTERFLY_PULSE_TIME);
+	
     }
     
 

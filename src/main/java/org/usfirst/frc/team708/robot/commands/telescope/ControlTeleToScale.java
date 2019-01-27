@@ -26,17 +26,17 @@ public class ControlTeleToScale extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(Robot.tele.getAngle() <= Constants.TELE_SCALE_HEIGHT - Constants.TELE_TOLERANCE)
-    		Robot.tele.moveMotor(Constants.TELE_FORWARD);
+    	if(Robot.tele.getAngle() <= Constants.ELE_LV3 - Constants.ELE_TOLERANCE)
+    		Robot.tele.moveMotor(Constants.ELE_FORWARD);
     	else
-    		Robot.tele.moveMotor(Constants.TELE_REVERSE);
+    		Robot.tele.moveMotor(Constants.ELE_REVERSE);
     	}    	
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
     	//Have a range in case the RIO can't get the angle exact.
-    	if (Robot.tele.getAngle() >= Constants.TELE_SCALE_HEIGHT - Constants.TELE_TOLERANCE && 
-    			      Robot.tele.getAngle() <= Constants.TELE_SCALE_HEIGHT + Constants.TELE_TOLERANCE)
+    	if (Robot.tele.getAngle() >= Constants.ELE_LV3 - Constants.ELE_TOLERANCE && 
+    			      Robot.tele.getAngle() <= Constants.ELE_LV3 + Constants.ELE_TOLERANCE)
     		return true;	
     	else
     		return false;

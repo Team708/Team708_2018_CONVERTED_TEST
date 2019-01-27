@@ -1,4 +1,4 @@
-package org.usfirst.frc.team708.robot.commands.intakeCube;
+package org.usfirst.frc.team708.robot.commands.intake;
 
 import org.usfirst.frc.team708.robot.Constants;
 import org.usfirst.frc.team708.robot.OI;
@@ -36,7 +36,7 @@ public class AutoIntakeIn extends Command {
 //    		Robot.intakeCube.stop();
 //    	else
 //         	Robot.intakeCube.moveMotor(Constants.INTAKE_FORWARD);    }
-    	Robot.intakeCube.moveMotor(Constants.INTAKE_FORWARD);
+    	Robot.intakeCube.moveMotor(Constants.BALL_FORWARD);
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
